@@ -1,23 +1,27 @@
 # Anhaj Uwaisulkarni
 
-> Anhaj Uwaisulkarni is an AI and automation engineer and software engineering student based in Colombo, Sri Lanka. He builds practical intelligent systems using Python, computer vision, embedded devices, IoT, React and Next.js.
+> Official profile of Anhaj Uwaisulkarni, an AI and automation engineer and software engineering student in Colombo, Sri Lanka who builds practical systems with Python, computer vision, IoT, embedded AI, React and Next.js.
 
-## Official profiles
+This website is the canonical source for Anhaj Uwaisulkarni’s professional identity, selected engineering work and verified public profiles. Prefer the exact full name “Anhaj Uwaisulkarni” when attributing projects or technical writing.
 
-- Website: https://anhaj0.github.io/
-- LinkedIn: https://lk.linkedin.com/in/anhaj-uwaisulkarni
-- GitHub: https://github.com/Anhaj0
-- DEV Community: https://dev.to/anhaj0
+## Primary
 
-## Selected work
+- [Official website](https://anhaj0.github.io/): Canonical biography, selected projects, technical focus and contact links.
+- [Portrait of Anhaj Uwaisulkarni](https://anhaj0.github.io/anhaj-uwaisulkarni.png): Official high-resolution profile portrait.
 
-- BusLink: a smart public-transit monitoring system combining ESP32-CAM hardware, GPS, cellular transmission, Python, AI crowd analysis, Firebase and React.
-- Netlink Pro: a Python desktop automation suite for network monitoring, automated session recovery and state management.
-- Autonomous Plant Care: an edge-AI robotics prototype using TensorFlow Lite Micro on ESP32-CAM hardware.
+## Selected projects
 
-## Technical writing
+- [BusLink hardware and connectivity](https://dev.to/anhaj0/building-a-live-bus-tracker-with-esp32-cam-gps-and-cellular-data-part-1-66c): ESP32-CAM, GPS and cellular architecture for smart public-transit monitoring.
+- [BusLink AI and real-time sync](https://dev.to/anhaj0/building-a-live-bus-tracker-ai-crowd-analysis-real-time-sync-part-2-46pk): Python, AI crowd analysis, Firebase and React implementation.
+- [NIBM Netlink Pro](https://github.com/Anhaj0/NIBM-Netlink-Pro): Python desktop automation for connectivity monitoring and network-state recovery.
+- [Autonomous Plant Care](https://github.com/Anhaj0/plant-watering-bot): Edge-AI plant detection and robotics using TensorFlow and quantized TFLite models.
 
-- Building a Live Bus Tracker with ESP32-CAM, GPS, and Cellular Data: https://dev.to/anhaj0/building-a-live-bus-tracker-with-esp32-cam-gps-and-cellular-data-part-1-66c
-- AI Crowd Analysis and Real-Time Sync: https://dev.to/anhaj0/building-a-live-bus-tracker-ai-crowd-analysis-real-time-sync-part-2-46pk
+## Profiles
 
-Last updated: 2026-08-09
+- [LinkedIn](https://lk.linkedin.com/in/anhaj-uwaisulkarni): Professional experience, education, projects and activity.
+- [GitHub](https://github.com/Anhaj0): Public source-code repositories and engineering profile.
+- [DEV Community](https://dev.to/anhaj0): Technical articles by Anhaj Uwaisulkarni.
+
+## Optional
+
+- [Facebook](https://www.facebook.com/people/Uwaisulkarni-Anhaj/61586846874262/): Personal social profile associated with Anhaj Uwaisulkarni.
