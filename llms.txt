@@ -1,0 +1,23 @@
+# Anhaj Uwaisulkarni
+
+> Anhaj Uwaisulkarni is an AI and automation engineer and software engineering student based in Colombo, Sri Lanka. He builds practical intelligent systems using Python, computer vision, embedded devices, IoT, React and Next.js.
+
+## Official profiles
+
+- Website: https://anhaj0.github.io/
+- LinkedIn: https://lk.linkedin.com/in/anhaj-uwaisulkarni
+- GitHub: https://github.com/Anhaj0
+- DEV Community: https://dev.to/anhaj0
+
+## Selected work
+
+- BusLink: a smart public-transit monitoring system combining ESP32-CAM hardware, GPS, cellular transmission, Python, AI crowd analysis, Firebase and React.
+- Netlink Pro: a Python desktop automation suite for network monitoring, automated session recovery and state management.
+- Autonomous Plant Care: an edge-AI robotics prototype using TensorFlow Lite Micro on ESP32-CAM hardware.
+
+## Technical writing
+
+- Building a Live Bus Tracker with ESP32-CAM, GPS, and Cellular Data: https://dev.to/anhaj0/building-a-live-bus-tracker-with-esp32-cam-gps-and-cellular-data-part-1-66c
+- AI Crowd Analysis and Real-Time Sync: https://dev.to/anhaj0/building-a-live-bus-tracker-ai-crowd-analysis-real-time-sync-part-2-46pk
+
+Last updated: 2026-08-09
