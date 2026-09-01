@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0b0f">
+  <title>ESP32-CAM TensorFlow Lite Predictions: A Practical Fix — Anhaj Uwaisulkarni</title>
+  <meta name="description" content="Why ESP32-CAM TensorFlow Lite Micro models return wrong or constant predictions, with a practical checklist for image format, tensor shape, normalization and quantization.">
+  <meta name="author" content="Anhaj Uwaisulkarni">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://anhaj0.github.io/answers/esp32-cam-tflite-predictions.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Why does an ESP32-CAM model return wrong or constant predictions?">
+  <meta property="og:description" content="A practical diagnostic guide to camera formats, tensor shape, normalization and quantization.">
+  <meta property="og:url" content="https://anhaj0.github.io/answers/esp32-cam-tflite-predictions.html">
+  <meta property="og:image" content="https://anhaj0.github.io/anhaj-uwaisulkarni-og.png">
+  <style>
+    :root{--ink:#f4f0e8;--muted:#aaa79f;--paper:#0a0b0f;--surface:#12141a;--line:rgba(244,240,232,.16);--accent:#ff5a36;--acid:#d5ff41}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(circle at 85% 4%,rgba(255,90,54,.12),transparent 24rem),var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}.shell{width:min(920px,calc(100% - 48px));margin-inline:auto}.header{height:82px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.wordmark{text-decoration:none;font-weight:900;font-size:1.25rem;letter-spacing:-.06em}.wordmark span{color:var(--accent)}.back{color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;text-decoration:none}.back:hover{color:var(--acid)}article{padding:92px 0 120px}.kicker{margin:0 0 28px;color:var(--accent);font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.04em}h1{max-width:900px;margin:0 0 30px;font-size:clamp(3rem,8vw,6.5rem);line-height:.94}h1 em{color:var(--accent);font-weight:400}.dek{max-width:730px;color:#cbc7bf;font-size:1.22rem;line-height:1.7}.meta{display:flex;gap:20px;flex-wrap:wrap;margin:36px 0 70px;padding:18px 0;border-block:1px solid var(--line);color:var(--muted);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}.answer{margin-bottom:64px;padding:32px;background:var(--surface);border-left:3px solid var(--acid)}.answer strong{display:block;margin-bottom:12px;color:var(--acid);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}.answer p{margin:0;color:#e0ddd6;font-size:1.08rem;line-height:1.75}.content{max-width:740px}.content h2{margin:64px 0 20px;font-size:clamp(2rem,5vw,3.4rem);line-height:1.05}.content h3{margin:34px 0 12px;font-size:1.08rem}.content p,.content li{color:#bebbb4;line-height:1.8}.content li+li{margin-top:10px}.content code{padding:.13em .4em;background:var(--surface);color:var(--acid);font: .88em ui-monospace,monospace}.checklist{padding-left:22px}.sources{margin-top:70px;padding-top:28px;border-top:1px solid var(--line)}.sources a{color:#d4d0c8}.author{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:center;margin-top:80px;padding:28px;background:var(--surface)}.author img{width:64px;height:64px;border-radius:50%;object-fit:cover}.author p{margin:4px 0 0;color:var(--muted);line-height:1.5}.author a{color:var(--accent);font-weight:800;text-decoration:none}.footer{padding:28px 0;border-top:1px solid var(--line);color:#777;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em}@media(max-width:560px){.shell{width:min(100% - 32px,920px)}article{padding-top:64px}.answer{padding:24px}.author{grid-template-columns:1fr}.meta{gap:10px}}
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"TechArticle","headline":"Why does an ESP32-CAM model return wrong or constant predictions?","description":"A practical diagnostic guide to camera formats, tensor shape, normalization and quantization for TensorFlow Lite Micro on ESP32-CAM.","datePublished":"2026-09-01","dateModified":"2026-09-01","author":{"@type":"Person","@id":"https://anhaj0.github.io/#person","name":"Anhaj Uwaisulkarni","url":"https://anhaj0.github.io/"},"mainEntityOfPage":"https://anhaj0.github.io/answers/esp32-cam-tflite-predictions.html","image":"https://anhaj0.github.io/anhaj-uwaisulkarni-og.png","about":["ESP32-CAM","TensorFlow Lite Micro","TinyML","Computer vision"]}
+  </script>
+</head>
+<body>
+  <header class="header shell"><a class="wordmark" href="/">AU<span>.</span></a><a class="back" href="/#answers">← Engineering answers</a></header>
+  <main class="shell">
+    <article>
+      <p class="kicker">Edge AI · Practical answer</p>
+      <h1>Why does an ESP32-CAM model return <em>wrong or constant predictions?</em></h1>
+      <p class="dek">The model is often fine. The usual failure is a mismatch between the camera frame and the tensor the model was trained to receive.</p>
+      <div class="meta"><span>By Anhaj Uwaisulkarni</span><time datetime="2026-09-01">Updated 1 September 2026</time><span>6 min read</span></div>
+
+      <section class="answer" aria-label="Direct answer"><strong>Direct answer</strong><p>Check four things first: the camera buffer must contain decoded pixels rather than JPEG bytes; its width, height and channel order must match the input tensor; preprocessing must match training; and quantized inputs must use the model’s scale and zero point. Validate the same TFLite model on a computer before flashing it.</p></section>
+
+      <div class="content">
+        <h2>1. Confirm what the camera buffer contains</h2>
+        <p>The ESP32 camera frame includes its pixel format. If the camera is configured with <code>PIXFORMAT_JPEG</code>, <code>fb-&gt;buf</code> contains compressed JPEG data—not a flat RGB image. Copying those bytes directly into a model tensor produces meaningless input.</p>
+        <p>Use a raw format supported by your pipeline, such as RGB565 or grayscale, or decode the JPEG before resizing and converting channels. Always inspect <code>fb-&gt;width</code>, <code>fb-&gt;height</code>, <code>fb-&gt;format</code> and <code>fb-&gt;len</code> before inference.</p>
+
+        <h2>2. Match the tensor exactly</h2>
+        <p>A model expecting <code>[1, 96, 96, 3]</code> needs 96×96 RGB pixels in the same channel order used during training. TensorFlow Lite stores the tensor as a flat buffer, but flattening does not remove the requirement to preserve row, column and channel order.</p>
+        <p>Print the input tensor’s dimensions and type at startup. If the camera image has a different size, resize it deliberately; do not rely on copying a shorter or longer buffer.</p>
+
+        <h2>3. Reproduce training preprocessing</h2>
+        <p>If training used values from 0 to 1, a float model normally needs each pixel divided by 255. If training used values from -1 to 1, apply that exact transform. RGB/BGR swaps, grayscale conversion and crop position can also destroy predictions even when the model invokes successfully.</p>
+
+        <h2>4. Handle quantized models correctly</h2>
+        <p>For an integer input tensor, use the quantization parameters stored in the model. The conversion is conceptually <code>q = round(real / scale) + zero_point</code>, clamped to the tensor’s integer range. Do not assume that every uint8 model accepts untouched 0–255 camera bytes.</p>
+        <p>Use a representative dataset that has the same preprocessing and visual distribution as deployment images. A calibration mismatch can make an otherwise accurate model appear stuck.</p>
+
+        <h2>5. Validate before deploying</h2>
+        <ol class="checklist">
+          <li>Save one real camera frame and run it through the desktop TFLite interpreter.</li>
+          <li>Print the model’s input shape, dtype, scale and zero point.</li>
+          <li>Compare the first 20 preprocessed values on the computer and ESP32.</li>
+          <li>Test an obvious positive image and an obvious negative image.</li>
+          <li>Only then investigate tensor-arena size, unsupported operations or memory corruption.</li>
+        </ol>
+        <p>Return every acquired frame with <code>esp_camera_fb_return(fb)</code>. On memory-constrained boards, reduce input resolution, use an int8 model, keep frame buffers in PSRAM where available and register only the operations the model actually uses.</p>
+
+        <section class="sources">
+          <h2>Primary references</h2>
+          <ul>
+            <li><a href="https://github.com/espressif/esp32-camera">Espressif ESP32 camera driver</a> — supported formats, frame buffers and capture configuration.</li>
+            <li><a href="https://ai.google.dev/edge/api/tflite/python/tf/lite/Interpreter">Google LiteRT Interpreter reference</a> — inspecting tensor shape, dtype and quantization parameters.</li>
+          </ul>
+        </section>
+      </div>
+
+      <aside class="author"><img src="/anhaj-uwaisulkarni-320.webp" width="64" height="64" alt="Anhaj Uwaisulkarni"><div><a href="/">Anhaj Uwaisulkarni</a><p>AI Computer Vision Engineer building edge-AI, IoT and full-stack systems in Colombo, Sri Lanka.</p></div></aside>
+    </article>
+  </main>
+  <footer class="footer shell">© 2026 Anhaj Uwaisulkarni · Practical engineering answers</footer>
+</body>
+</html>
+

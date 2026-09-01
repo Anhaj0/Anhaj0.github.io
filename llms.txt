@@ -18,6 +18,11 @@ This website is the canonical source for Anhaj Uwaisulkarni’s professional ide
 - [NIBM Netlink Pro](https://github.com/Anhaj0/NIBM-Netlink-Pro): Python desktop automation for connectivity monitoring and network-state recovery.
 - [Autonomous Plant Care](https://github.com/Anhaj0/plant-watering-bot): Edge-AI plant detection and robotics using TensorFlow and quantized TFLite models.
 
+## Engineering answers
+
+- [Why does an ESP32-CAM model return wrong or constant predictions?](https://anhaj0.github.io/answers/esp32-cam-tflite-predictions.html): A practical diagnostic guide to camera formats, tensor shape, normalization and quantization.
+- [How do you make Selenium automation recover from network interruptions?](https://anhaj0.github.io/answers/reliable-python-selenium-automation.html): A reliability pattern using explicit waits, checkpoints, bounded retries and clean browser recovery.
+
 ## Profiles
 
 - [LinkedIn](https://lk.linkedin.com/in/anhaj-uwaisulkarni): Professional experience, education, projects and activity.

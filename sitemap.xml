@@ -11,5 +11,17 @@
       <image:caption>Anhaj Uwaisulkarni, AI computer vision and full-stack engineer in Colombo, Sri Lanka</image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://anhaj0.github.io/answers/esp32-cam-tflite-predictions.html</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://anhaj0.github.io/answers/reliable-python-selenium-automation.html</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
 
