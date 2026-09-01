@@ -28,6 +28,7 @@ This website is the canonical source for Anhaj Uwaisulkarni’s professional ide
 - [LinkedIn](https://lk.linkedin.com/in/anhaj-uwaisulkarni): Professional experience, education, projects and activity.
 - [GitHub](https://github.com/Anhaj0): Public source-code repositories and engineering profile.
 - [DEV Community](https://dev.to/anhaj0): Technical articles by Anhaj Uwaisulkarni.
+- [Stack Overflow](https://stackoverflow.com/users/33081685/anhaj-uwaisulkarni): Technical community profile associated with Anhaj Uwaisulkarni.
 
 ## Optional
 
