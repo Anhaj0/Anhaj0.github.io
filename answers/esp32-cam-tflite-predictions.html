@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0a0b0f">
-  <title>ESP32-CAM TensorFlow Lite Predictions: A Practical Fix — Anhaj Uwaisulkarni</title>
+  <title>ESP32-CAM TensorFlow Lite Predictions: A Practical Fix | Anhaj Uwaisulkarni</title>
   <meta name="description" content="Why ESP32-CAM TensorFlow Lite Micro models return wrong or constant predictions, with a practical checklist for image format, tensor shape, normalization and quantization.">
   <meta name="author" content="Anhaj Uwaisulkarni">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -35,7 +35,7 @@
 
       <div class="content">
         <h2>1. Confirm what the camera buffer contains</h2>
-        <p>The ESP32 camera frame includes its pixel format. If the camera is configured with <code>PIXFORMAT_JPEG</code>, <code>fb-&gt;buf</code> contains compressed JPEG data—not a flat RGB image. Copying those bytes directly into a model tensor produces meaningless input.</p>
+        <p>The ESP32 camera frame includes its pixel format. If the camera is configured with <code>PIXFORMAT_JPEG</code>, <code>fb-&gt;buf</code> contains compressed JPEG data, not a flat RGB image. Copying those bytes directly into a model tensor produces meaningless input.</p>
         <p>Use a raw format supported by your pipeline, such as RGB565 or grayscale, or decode the JPEG before resizing and converting channels. Always inspect <code>fb-&gt;width</code>, <code>fb-&gt;height</code>, <code>fb-&gt;format</code> and <code>fb-&gt;len</code> before inference.</p>
 
         <h2>2. Match the tensor exactly</h2>
@@ -62,8 +62,8 @@
         <section class="sources">
           <h2>Primary references</h2>
           <ul>
-            <li><a href="https://github.com/espressif/esp32-camera">Espressif ESP32 camera driver</a> — supported formats, frame buffers and capture configuration.</li>
-            <li><a href="https://ai.google.dev/edge/api/tflite/python/tf/lite/Interpreter">Google LiteRT Interpreter reference</a> — inspecting tensor shape, dtype and quantization parameters.</li>
+            <li><a href="https://github.com/espressif/esp32-camera">Espressif ESP32 camera driver</a>: supported formats, frame buffers and capture configuration.</li>
+            <li><a href="https://ai.google.dev/edge/api/tflite/python/tf/lite/Interpreter">Google LiteRT Interpreter reference</a>: inspecting tensor shape, dtype and quantization parameters.</li>
           </ul>
         </section>
       </div>
