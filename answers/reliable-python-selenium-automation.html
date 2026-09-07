@@ -19,7 +19,7 @@
     :root{--ink:#f4f0e8;--muted:#aaa79f;--paper:#0a0b0f;--surface:#12141a;--line:rgba(244,240,232,.16);--accent:#ff5a36;--acid:#d5ff41}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(circle at 85% 4%,rgba(255,90,54,.12),transparent 24rem),var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}.shell{width:min(920px,calc(100% - 48px));margin-inline:auto}.header{height:82px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.wordmark{text-decoration:none;font-weight:900;font-size:1.25rem;letter-spacing:-.06em}.wordmark span{color:var(--accent)}.back{color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;text-decoration:none}.back:hover{color:var(--acid)}article{padding:92px 0 120px}.kicker{margin:0 0 28px;color:var(--accent);font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.04em}h1{max-width:900px;margin:0 0 30px;font-size:clamp(3rem,8vw,6.5rem);line-height:.94}h1 em{color:var(--accent);font-weight:400}.dek{max-width:730px;color:#cbc7bf;font-size:1.22rem;line-height:1.7}.meta{display:flex;gap:20px;flex-wrap:wrap;margin:36px 0 70px;padding:18px 0;border-block:1px solid var(--line);color:var(--muted);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}.answer{margin-bottom:64px;padding:32px;background:var(--surface);border-left:3px solid var(--acid)}.answer strong{display:block;margin-bottom:12px;color:var(--acid);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}.answer p{margin:0;color:#e0ddd6;font-size:1.08rem;line-height:1.75}.content{max-width:740px}.content h2{margin:64px 0 20px;font-size:clamp(2rem,5vw,3.4rem);line-height:1.05}.content h3{margin:34px 0 12px;font-size:1.08rem}.content p,.content li{color:#bebbb4;line-height:1.8}.content li+li{margin-top:10px}.content code{padding:.13em .4em;background:var(--surface);color:var(--acid);font:.88em ui-monospace,monospace}pre{overflow:auto;margin:24px 0;padding:24px;background:var(--surface);border:1px solid var(--line);color:#e4e0d8;font: .82rem/1.65 ui-monospace,monospace}pre code{padding:0;background:none;color:inherit}.sources{margin-top:70px;padding-top:28px;border-top:1px solid var(--line)}.sources a{color:#d4d0c8}.author{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:center;margin-top:80px;padding:28px;background:var(--surface)}.author img{width:64px;height:64px;border-radius:50%;object-fit:cover}.author p{margin:4px 0 0;color:var(--muted);line-height:1.5}.author a{color:var(--accent);font-weight:800;text-decoration:none}.footer{padding:28px 0;border-top:1px solid var(--line);color:#777;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em}@media(max-width:560px){.shell{width:min(100% - 32px,920px)}article{padding-top:64px}.answer{padding:24px}.author{grid-template-columns:1fr}.meta{gap:10px}}
   </style>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"TechArticle","headline":"How do you make Selenium automation recover from network interruptions?","description":"A practical reliability pattern for Python Selenium using explicit waits, checkpoints, bounded retries and clean browser recovery.","datePublished":"2026-09-01","dateModified":"2026-09-01","author":{"@type":"Person","@id":"https://anhaj0.github.io/#person","name":"Anhaj Uwaisulkarni","url":"https://anhaj0.github.io/"},"mainEntityOfPage":"https://anhaj0.github.io/answers/reliable-python-selenium-automation.html","image":"https://anhaj0.github.io/anhaj-uwaisulkarni-og.png","about":["Python","Selenium","Browser automation","Reliability engineering"]}
+  {"@context":"https://schema.org","@type":"TechArticle","headline":"How do you make Selenium automation recover from network interruptions?","description":"A practical reliability pattern for Python Selenium using explicit waits, checkpoints, bounded retries and clean browser recovery.","datePublished":"2026-09-01","dateModified":"2026-09-07","author":{"@type":"Person","@id":"https://anhaj0.github.io/#person","name":"Anhaj Uwaisulkarni","url":"https://anhaj0.github.io/"},"mainEntityOfPage":"https://anhaj0.github.io/answers/reliable-python-selenium-automation.html","image":"https://anhaj0.github.io/anhaj-uwaisulkarni-og.png","about":["Python","Selenium","Browser automation","Reliability engineering"]}
   </script>
 </head>
 <body>
@@ -29,7 +29,7 @@
       <p class="kicker">Python automation · Practical answer</p>
       <h1>How do you make Selenium automation <em>recover from network interruptions?</em></h1>
       <p class="dek">Treat browser automation as a recoverable workflow, not one fragile sequence of clicks.</p>
-      <div class="meta"><span>By Anhaj Uwaisulkarni</span><time datetime="2026-09-01">Updated 1 September 2026</time><span>7 min read</span></div>
+      <div class="meta"><span>By Anhaj Uwaisulkarni</span><time datetime="2026-09-07">Updated 7 September 2026</time><span>7 min read</span></div>
 
       <section class="answer" aria-label="Direct answer"><strong>Direct answer</strong><p>Use explicit waits for observable page states, split the workflow into idempotent business steps, save a checkpoint after each completed step and retry only transient failures with bounded exponential backoff. If the WebDriver session is unhealthy, quit it, create a clean browser and resume from the last verified checkpoint.</p></section>
 
@@ -48,19 +48,32 @@ wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".success")))</cod
 
         <h2>2. Retry the business step</h2>
         <p>Do not retry every low-level click independently. Wrap a complete, verifiable step such as “open account page” or “submit record.” After an exception, check whether the intended result already happened before repeating an action that could create a duplicate.</p>
-        <pre><code>def run_with_recovery(step, verify, attempts=3):
+        <p>The helper below is for read-only or genuinely idempotent operations. Supply the specific exception types that your application has classified as temporary; it deliberately does not catch every exception. It is a reusable control-flow example, not a complete Selenium application.</p>
+        <pre><code>import time
+
+
+def run_with_recovery(step, verify, *, transient_errors,
+                      attempts=3, sleep=time.sleep):
+    if attempts &lt; 1:
+        raise ValueError("attempts must be at least 1")
+
     for attempt in range(attempts):
-        if verify():
-            return
         try:
+            if verify():
+                return
             step()
             if verify():
                 return
-        except TRANSIENT_ERRORS:
+        except transient_errors:
             if attempt == attempts - 1:
                 raise
-            time.sleep(2 ** attempt)
+
+        if attempt &lt; attempts - 1:
+            sleep(min(2 ** attempt, 8))
+
     raise RuntimeError("Step did not reach its verified state")</code></pre>
+        <p><strong>A timeout does not prove that a write failed.</strong> If a form submission times out after the server saved it, retrying can create a duplicate. For payments, record creation or other non-idempotent writes, reconcile using a stable record ID or a server-supported idempotency key. If you cannot determine the result, stop for review instead of automatically submitting again.</p>
+        <p>In a Selenium integration, a <code>TimeoutException</code> may be temporary, but it can also mean the selector is wrong. Classify it using the page state and logs. Re-find stale elements inside each attempt; retrying the same stale element reference will not repair it.</p>
 
         <h2>3. Save checkpoints outside the browser</h2>
         <p>Cookies and page state are not enough. Store a small checkpoint—record ID, last completed phase and timestamp—in SQLite, JSON or a remote database. On restart, query the target system when possible and resume from the last confirmed state.</p>
@@ -71,7 +84,7 @@ wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".success")))</cod
           <li><strong>Retry:</strong> page-load timeouts, temporary DNS failures, stale elements after a re-render and brief service unavailability.</li>
           <li><strong>Stop and report:</strong> invalid credentials, permission failures, changed selectors, validation errors and unexpected business rules.</li>
         </ul>
-        <p>For each final failure, save the URL, screenshot, page source, current checkpoint and exception trace. Those artifacts turn “it stopped” into a diagnosable incident.</p>
+        <p>For each final failure, record a sanitized URL, current checkpoint and exception trace. Capture screenshots or page source only when needed, redact credentials and personal data, restrict access and set a retention limit. Those artifacts turn “it stopped” into a diagnosable incident without creating an unnecessary store of sensitive information.</p>
 
         <h2>5. Replace a broken session cleanly</h2>
         <p>First test whether the driver can read a simple property such as the current URL. If the browser has crashed or the session is invalid, call <code>quit()</code> in a protected cleanup block, create a new driver and navigate back to a known entry point. Reuse a persistent browser profile only when the target system permits it and the profile can be protected.</p>
