@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0a0b0f">
-  <title>Reliable Python Selenium Automation After Network Failures — Anhaj Uwaisulkarni</title>
+  <title>Reliable Python Selenium Automation After Network Failures | Anhaj Uwaisulkarni</title>
   <meta name="description" content="A practical architecture for Python Selenium automation that survives slow pages, dropped connections and expired browser sessions using explicit waits, checkpoints and bounded retries.">
   <meta name="author" content="Anhaj Uwaisulkarni">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -76,7 +76,7 @@ def run_with_recovery(step, verify, *, transient_errors,
         <p>In a Selenium integration, a <code>TimeoutException</code> may be temporary, but it can also mean the selector is wrong. Classify it using the page state and logs. Re-find stale elements inside each attempt; retrying the same stale element reference will not repair it.</p>
 
         <h2>3. Save checkpoints outside the browser</h2>
-        <p>Cookies and page state are not enough. Store a small checkpoint—record ID, last completed phase and timestamp—in SQLite, JSON or a remote database. On restart, query the target system when possible and resume from the last confirmed state.</p>
+        <p>Cookies and page state are not enough. Store a small checkpoint with the record ID, last completed phase and timestamp in SQLite, JSON or a remote database. On restart, query the target system when possible and resume from the last confirmed state.</p>
         <p>Design repeated steps to be idempotent: running them twice should either be safe or detect that the work is already complete. This matters more than the retry library you choose.</p>
 
         <h2>4. Separate transient and permanent failures</h2>
@@ -93,8 +93,8 @@ def run_with_recovery(step, verify, *, transient_errors,
         <section class="sources">
           <h2>Primary references</h2>
           <ul>
-            <li><a href="https://www.selenium.dev/documentation/webdriver/waits/">Selenium waiting strategies</a> — official guidance on race conditions, implicit waits and explicit waits.</li>
-            <li><a href="https://www.selenium.dev/selenium/docs/api/py/selenium_webdriver_support/selenium.webdriver.support.wait.html">Python WebDriverWait reference</a> — timeout, polling and expected-condition behavior.</li>
+            <li><a href="https://www.selenium.dev/documentation/webdriver/waits/">Selenium waiting strategies</a>: official guidance on race conditions, implicit waits and explicit waits.</li>
+            <li><a href="https://www.selenium.dev/selenium/docs/api/py/selenium_webdriver_support/selenium.webdriver.support.wait.html">Python WebDriverWait reference</a>: timeout, polling and expected-condition behavior.</li>
           </ul>
         </section>
       </div>
