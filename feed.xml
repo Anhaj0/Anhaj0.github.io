@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Engineering writing by Anhaj Uwaisulkarni</title>
+    <link>https://anhaj0.github.io/</link>
+    <description>Project case studies and practical notes on computer vision, IoT and automation.</description>
+    <language>en</language>
+    <atom:link href="https://anhaj0.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>BusLink: From ESP32-CAM to a Live Transit Dashboard</title>
+      <link>https://anhaj0.github.io/projects/buslink.html</link>
+      <guid>https://anhaj0.github.io/projects/buslink.html</guid>
+      <pubDate>Wed, 09 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A case study of ESP32-CAM, GPS, cellular uploads, FastAPI, AI crowd analysis, Firestore and React by Anhaj Uwaisulkarni.</description>
+    </item>
+    <item>
+      <title>Recovering Selenium automation from network interruptions</title>
+      <link>https://anhaj0.github.io/answers/reliable-python-selenium-automation.html</link>
+      <guid>https://anhaj0.github.io/answers/reliable-python-selenium-automation.html</guid>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Explicit waits, verified checkpoints and bounded retries.</description>
+    </item>
+    <item>
+      <title>Why ESP32-CAM models return wrong or constant predictions</title>
+      <link>https://anhaj0.github.io/answers/esp32-cam-tflite-predictions.html</link>
+      <guid>https://anhaj0.github.io/answers/esp32-cam-tflite-predictions.html</guid>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Camera formats, tensor shapes, preprocessing and quantization.</description>
+    </item>
+  </channel>
+</rss>

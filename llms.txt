@@ -13,6 +13,9 @@ This website is the canonical source for Anhaj Uwaisulkarni’s professional ide
 
 ## Selected projects
 
+- [BusLink project case study](https://anhaj0.github.io/projects/buslink.html): Hardware, cloud architecture and design review by Anhaj Uwaisulkarni.
+- [Engineering RSS feed](https://anhaj0.github.io/feed.xml): Subscribe to project case studies and technical articles.
+
 - [AstriX](https://asrx.me/): Anhaj Uwaisulkarni’s independent development studio for web platforms, IoT systems, AI agents and business automation.
 - [BusLink hardware and connectivity](https://dev.to/anhaj0/building-a-live-bus-tracker-with-esp32-cam-gps-and-cellular-data-part-1-66c): ESP32-CAM, GPS and cellular architecture for smart public-transit monitoring.
 - [BusLink AI and real-time sync](https://dev.to/anhaj0/building-a-live-bus-tracker-ai-crowd-analysis-real-time-sync-part-2-46pk): Python, AI crowd analysis, Firebase and React implementation.
